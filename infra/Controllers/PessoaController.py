@@ -1,4 +1,4 @@
-from infra.configs.connection import BDConnectionHandler
+from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Pessoa import Pessoa
 
 class PessoaController:
