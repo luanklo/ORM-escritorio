@@ -2,7 +2,7 @@ from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Pessoa import Pessoa
 
 class PessoaController:
-    def select(self,id=None, nome=None, cpf_cnpj=None, numero=None):
+    def select(self, id=None, nome=None, cpf_cnpj=None, numero=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Pessoa)
             
@@ -20,7 +20,7 @@ class PessoaController:
             db.session.add(data_insert)
             db.session.commit()
     
-    def delete(self,id=None, nome=None, cpf_cnpj=None, numero=None):
+    def delete(self, id=None, nome=None, cpf_cnpj=None, numero=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Pessoa)
 
