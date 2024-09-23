@@ -29,7 +29,7 @@ class ProcessoController:
             db.session.delete(processo[0])
             db.session.commit()
 
-    def update(self, pessoa: Pessoa, numero=None, valor=None, vara=None, classe=None, link=None, profissao=None):
+    def update(self, processo: Processo, numero=None, valor=None, vara=None, classe=None, link=None, profissao=None):
         with BDConnectionHandler() as db:
             updates = {}
             if numero: updates["numero"] = numero
