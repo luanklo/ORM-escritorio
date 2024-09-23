@@ -9,7 +9,7 @@ class Motivo(base):
     id = Column(Integer, primary_key=True)
     nome = Column(String, nullable=False)
 
-    motivos = relationship("Processo", secondary="processo_motivo", backref="motivo")
+    processos = relationship("Processo", secondary="processo_motivo", backref="motivo")
 
 
     def __repr__(self):
