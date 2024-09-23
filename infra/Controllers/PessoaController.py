@@ -11,8 +11,7 @@ class PessoaController:
             if cpf_cnpj: query = query.filter(Pessoa.cpf_cnpj==cpf_cnpj)
             if numero:   query = query.filter(Pessoa.numero==numero)
             
-            # query.all()
-            return query
+            return query.all()
 
     def insert(self, nome, cpf_cnpj=None, numero=None):
         with BDConnectionHandler() as db:
@@ -20,26 +19,19 @@ class PessoaController:
             db.session.add(data_insert)
             db.session.commit()
     
-    def delete(self, id=None, nome=None, cpf_cnpj=None, numero=None):
+    def delete(self, pessoa: Pessoa):
         with BDConnectionHandler() as db:
-            query = db.session.query(Pessoa)
-
-            if id:       query = query.filter(Pessoa.id==id)
-            if nome:     query = query.filter(Pessoa.nome==nome)
-            if cpf_cnpj: query = query.filter(Pessoa.cpf_cnpj==cpf_cnpj)
-            if numero:   query = query.filter(Pessoa.numero==numero)
-
-            query.delete()
+            if len(pessoa) != 1: print("tamanho errado"); return
+            
+            db.session.delete(pessoa[0])
             db.session.commit()
     
-    def update(filtro_id=None, filtro_nome=None, filtro_cpf_cnpj=None, filtro_numero=None, **updates):
+    def update(self, pessoa: Pessoa, nome=None, cpf_cnpj=None, numero=None):
         with BDConnectionHandler() as db:
-            query = db.query(Pessoa)
-            
-            if filtro_id:       query = query.filter(Pessoa.id==filtro_id)
-            if filtro_nome:     query = query.filter(Pessoa.nome==filtro_nome)
-            if filtro_cpf_cnpj: query = query.filter(Pessoa.cpf_cnpj==filtro_cpf_cnpj)
-            if filtro_numero:   query = query.filter(Pessoa.numero==filtro_numero)
-            
-            query.update(updates)
-            db.commit()
+            updates = {}
+            if nome: updates["nome"] = nome
+            if cpf_cnpj: updates["cpf_cnpj"] = cpf_cnpj
+            if numero: updates["numero"] = numero
+
+            db.session.query(Pessoa).filter(Pessoa.id == pessoa[0].id).update(updates)
+            db.session.commit()

@@ -9,4 +9,4 @@ class Advogado(base):
     aob = Column(String, nullable=False, unique=True)
 
     def __repr__(self):
-        return f"Pessoa [id={self.id}, nome={self.nome}, aob={self.aob}]"
+        return f"Advogado [id={self.id}, nome={self.nome}, aob={self.aob}]"

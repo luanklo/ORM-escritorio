@@ -6,36 +6,30 @@ class AdvogadoController:
         with BDConnectionHandler() as db:
             query = db.session.query(Advogado)
             
-            if id:   query = query.filter(Pessoa.id==id)
-            if nome: query = query.filter(Pessoa.nome==nome)
-            if aob:  query = query.filter(Pessoa.aob==aob)
+            if id:   query = query.filter(Advogado.id==id)
+            if nome: query = query.filter(Advogado.nome==nome)
+            if aob:  query = query.filter(Advogado.aob==aob)
             
-            return query
+            return query.all()
     
     def insert(self, nome, aob):
         with BDConnectionHandler() as db:
-            data_insert = Pessoa(nome=nome, aob=aob)
+            data_insert = Advogado(nome=nome, aob=aob)
             db.session.add(data_insert)
             db.session.commit()
     
-    def delete(self, id=None, nome=None, aob=None):
+    def delete(self, advogado: Advogado):
         with BDConnectionHandler() as db:
-            query = db.session.query(Pessoa)
+            if len(advogado) != 1: print("tamanho errado"); return
 
-            if id:   query = query.filter(Pessoa.id==id)
-            if nome: query = query.filter(Pessoa.nome==nome)
-            if aob:  query = query.filter(Pessoa.aob==aob)
-
-            query.delete()
+            db.session.delete(advogado[0])
             db.session.commit()
     
-    def update(filtro_id=None, filtro_nome=None, filtro_aob=None, **updates):
+    def update(self, advogado: Advogado, nome=None, aob=None):
         with BDConnectionHandler() as db:
-            query = db.query(Pessoa)
-            
-            if filtro_id:   query = query.filter(Pessoa.id==filtro_id)
-            if filtro_nome: query = query.filter(Pessoa.nome==filtro_nome)
-            if filtro_aob:  query = query.filter(Pessoa.cpf_cnpj==filtro_aob)
-            
-            query.update(updates)
-            db.commit()
+            updates = {}
+            if nome: updates["nome"] = nome
+            if aob: updates["aob"] = aob
+
+            db.session.query(Advogado).filter(Advogado.id == advogado[0].id).update(updates)
+            db.session.commit()
