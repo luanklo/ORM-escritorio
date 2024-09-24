@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Time, Date, relationship
+from sqlalchemy import Column, String, Integer, ForeignKey, Time, Date
+from sqlalchemy.orm import relationship
 from infra.Configs.base import base
 
 from infra.Configs.connection import BDConnectionHandler
@@ -15,7 +16,7 @@ class Parte(base):
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False)
     pessoa_id = Column(Integer, ForeignKey("pessoa.id"), nullable=False)
 
-    audiencias = relationship("Audiencia", secondary="processo_motivo", back_populates="partes")
+    audiencias = relationship("Audiencia", secondary="audiencia_parte", back_populates="partes")
     advogados = relationship("Advogado", secondary="advogado_parte", back_populates="partes")
 
     def addAdvogado(self, advogado: Advogado):

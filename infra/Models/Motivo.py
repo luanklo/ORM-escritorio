@@ -1,7 +1,6 @@
 from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from infra.Configs.base import base
 from sqlalchemy.orm import relationship
-from infra.Models.ProcessoMotivo import ProcessoMotivo
 
 class Motivo(base):
     __tablename__ = "motivo"

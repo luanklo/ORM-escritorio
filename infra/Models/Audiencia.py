@@ -1,5 +1,6 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, Time, Date, relationship
+from sqlalchemy import Column, String, Integer, ForeignKey, Time, Date
 from infra.Configs.base import base
+from sqlalchemy.orm import relationship
 
 from infra.Configs.connection import BDConnectionHandler
 from infra.Models.AudienciaParte import AudienciaParte
