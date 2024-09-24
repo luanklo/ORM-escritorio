@@ -1,6 +1,10 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Time, Date, relationship
 from infra.Configs.base import base
 
+from infra.Configs.connection import BDConnectionHandler
+from infra.Models.AudienciaParte import AudienciaParte
+from infra.Models.Parte import Parte
+
 class Audiencia(base):
     __tablename__ = "audiencia"
     #id, hora, dia, tipo, status, link, senha, processo_id
@@ -15,6 +19,12 @@ class Audiencia(base):
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False)
 
     partes = relationship("Parte", secondary="audiencia_parte", back_populates="audiencias")
+
+    def addParte(self, parte: Parte):
+        with BDConnectionHandler() as db:
+            nova_parte = AudienciaParte(audiencia_id=self.id, advogado_id=advogado.id)
+            db.session.add(nova_parte)
+            db.session.commit()
 
     def __repr__(self):
         return f"Audiencia [id={self.id}, hora={self.hora}, dia={self.dia},\
