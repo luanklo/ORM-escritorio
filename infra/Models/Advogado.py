@@ -8,7 +8,7 @@ class Advogado(base):
     nome = Column(String, nullable=False)
     aob = Column(String, nullable=False, unique=True)
 
-    partes = relationship("Parte", secondary="advogado_parte", backref="advogado")
+    partes = relationship("Parte", secondary="advogado_parte", back_populates="advogados")
 
     def __repr__(self):
         return f"Advogado [id={self.id}, nome={self.nome}, aob={self.aob}]"

@@ -14,4 +14,3 @@ motivo = motivo_controller.select(nome="Motivo 2")[0]
 
 # 2. Criando o Processo
 processo = processo_controller.select(numero=123456)[0]
-processo.addMotivo(motivo)
