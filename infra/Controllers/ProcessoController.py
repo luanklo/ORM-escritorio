@@ -1,7 +1,5 @@
 from infra.Configs.connection import BDConnectionHandler
-from infra.Models.ProcessoMotivo import ProcessoMotivo
 from infra.Models.Processo import Processo
-from infra.Models.Motivo import Motivo
 
 class ProcessoController:
     def select(self, id=None, numero=None, valor=None, vara=None, classe=None, link=None, profissao=None):
@@ -42,10 +40,4 @@ class ProcessoController:
             if profissao: updates["profissao"] = profissao
 
             db.session.query(Processo).filter(Processo.id == processo[0].id).update(updates)
-            db.session.commit()
-        
-    def addMotivo(self, processo: Processo, motivo: Motivo):
-        with BDConnectionHandler() as db:
-            novo_motivo = ProcessoMotivo(processo_id=processo.id, motivo_id=motivo.id)
-            db.session.add(novo_motivo)
             db.session.commit()
