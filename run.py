@@ -9,8 +9,10 @@ motivo_controller = MotivoController()
 # motivo2 = motivo_controller.insert(nome="Motivo 2")
 # motivo3 = motivo_controller.insert(nome="Motivo 3")
 
-motivo = motivo_controller.select(nome="Motivo 2")[0]
+motivo = motivo_controller.select()
+print(motivo)
 
 
 # 2. Criando o Processo
-processo = processo_controller.select(numero=123456)[0]
+processo = processo_controller.select()
+print(processo)
