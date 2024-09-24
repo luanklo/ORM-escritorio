@@ -5,13 +5,13 @@ class Audiencia(base):
     __tablename__ = "audiencia"
     #id, hora, dia, tipo, status, link, senha, processo_id
 
-    id = Column(Integer, primary_key=True)
-    hora = Column(Time, nullable=False)
-    dia = Column(Date, nullable=False)
-    tipo = Column(String, nullable=False)
-    status = Column(String, nullable=False)
-    link = Column(String, nullable=True)
-    senha = Column(String, nullable=True)
+    id =          Column(Integer, primary_key=True)
+    hora =        Column(Time, nullable=False)
+    dia =         Column(Date, nullable=False)
+    tipo =        Column(String, nullable=False)
+    status =      Column(String, nullable=False)
+    link =        Column(String, nullable=True)
+    senha =       Column(String, nullable=True)
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False)
 
     def __repr__(self):
