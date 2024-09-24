@@ -9,16 +9,9 @@ motivo_controller = MotivoController()
 # motivo2 = motivo_controller.insert(nome="Motivo 2")
 # motivo3 = motivo_controller.insert(nome="Motivo 3")
 
-pesq = motivo_controller.select(nome="Motivo 1")
-for x in pesq: print(x)
+motivo = motivo_controller.select(nome="Motivo 1")[0]
 
 
 # 2. Criando o Processo
-# novo_processo = Processo(
-#     numero="123456",
-#     valor=1500.0,
-#     vara="2ª Vara",
-#     classe="Classe B",
-#     link="http://exemplo.com/processo/123456",
-#     profissao="Advogado"
-# )
+processo = processo_controller.select(numero=123456)[0]
+processo_controller.addMotivo(processo=processo, motivo=motivo)

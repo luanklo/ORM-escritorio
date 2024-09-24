@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Float, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from infra.Configs.base import base
 
 class ProcessoMotivo(base):
@@ -7,7 +7,3 @@ class ProcessoMotivo(base):
 
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False, primary_key=True)
     motivo_id = Column(Integer, ForeignKey("motivo.id"), nullable=False, primary_key=True)
-
-    __table_args__ = (
-        UniqueConstraint('processo_id', 'motivo_id'),
-    )
