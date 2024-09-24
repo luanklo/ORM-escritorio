@@ -14,7 +14,7 @@ class Processo(base):
     link = Column(String, nullable=False)
     profissao = Column(String, nullable=True)
 
-    motivos = relationship("Motivo", secondary="processo_motivo", backref="processo")
+    motivos = relationship("Motivo", secondary="processo_motivo", back_populates="processos")
 
     def __repr__(self):
         return f"Processo [id={self.id}, numero={self.numero}, valor={self.valor}, vara={self.vara}, classe={self.classe}, link={self.link}, profissao={self.profissao}]"

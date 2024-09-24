@@ -6,16 +6,18 @@ class MotivoController:
         with BDConnectionHandler() as db:
             query = db.session.query(Motivo)
             
-            if id:       query = query.filter(Pessoa.id==id)
-            if nome:     query = query.filter(Pessoa.nome==nome)
+            if id:       query = query.filter(Motivo.id==id)
+            if nome:     query = query.filter(Motivo.nome==nome)
             
             return query.all()
 
     def insert(self, nome):
         with BDConnectionHandler() as db:
-            data_insert = Motivo(nome=nome)
-            db.session.add(data_insert)
+            moitvo_insert = Motivo(nome=nome)
+            db.session.add(moitvo_insert)
             db.session.commit()
+
+            return moitvo_insert
 
     def delete(self, motivo: Motivo):
         with BDConnectionHandler() as db:
