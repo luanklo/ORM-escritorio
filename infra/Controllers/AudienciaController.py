@@ -1,5 +1,5 @@
 from infra.Configs.connection import BDConnectionHandler
-from infra.Models.Audiencia import Audiencia  # Ajuste o import conforme necessário
+from infra.Models.Audiencia import Audiencia
 
 class AudienciaController:
     def select(self, id=None, processo_id=None, dia=None):
