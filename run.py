@@ -12,7 +12,6 @@ motivo_controller = MotivoController()
 motivo = motivo_controller.select()
 print(motivo)
 
-
 # 2. Criando o Processo
 processo = processo_controller.select()
 print(processo)
