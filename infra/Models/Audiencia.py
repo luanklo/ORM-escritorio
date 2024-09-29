@@ -23,7 +23,7 @@ class Audiencia(base):
 
     def addParte(self, parte: Parte):
         with BDConnectionHandler() as db:
-            nova_parte = AudienciaParte(audiencia_id=self.id, advogado_id=advogado.id)
+            nova_parte = AudienciaParte(audiencia_id=self.id, parte_id=parte.id)
             db.session.add(nova_parte)
             db.session.commit()
 

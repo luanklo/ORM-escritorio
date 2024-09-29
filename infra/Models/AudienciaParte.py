@@ -5,5 +5,5 @@ class AudienciaParte(base):
     __tablename__ = "audiencia_parte"
     # advogado_id, parte_id
 
-    advogado_id = Column(Integer, ForeignKey("advogado.id"), nullable=False, primary_key=True)
+    audiencia_id = Column(Integer, ForeignKey("audiencia.id"), nullable=False, primary_key=True)
     parte_id = Column(Integer, ForeignKey("parte.id"), nullable=False, primary_key=True)
