@@ -2,7 +2,7 @@ from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Parte import Parte
 
 class ParteController:
-    def select(self, id=None, processo_id=None, tipo=None):
+    def select(self, id=None, tipo=None, polo=None, processo_id=None, pessoa_id=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Parte)
             
@@ -24,6 +24,8 @@ class ParteController:
             )
             db.session.add(nova_parte)
             db.session.commit()
+
+            return db.session.query(Parte).filter(Parte.processo_id == processo_id).filter(Parte.pessoa_id == pessoa_id).first()
     
     def delete(self, parte: Parte):
         with BDConnectionHandler() as db:

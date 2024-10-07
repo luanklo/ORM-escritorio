@@ -28,5 +28,4 @@ class Processo(base):
             db.session.commit()
 
     def __repr__(self):
-        return f"Processo [id={self.id}, numero={self.numero}, valor={self.valor},\
-         vara={self.vara}, classe={self.classe}, link={self.link}, profissao={self.profissao}]"
+        return f"Processo [id={self.id}, numero={self.numero}, valor={self.valor}, vara={self.vara}, classe={self.classe}, link={self.link}, profissao={self.profissao}]"

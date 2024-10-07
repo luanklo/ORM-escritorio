@@ -17,6 +17,8 @@ class AdvogadoController:
             data_insert = Advogado(nome=nome, aob=aob)
             db.session.add(data_insert)
             db.session.commit()
+
+            return db.session.query(Advogado).filter(Advogado.aob==aob).first()
     
     def delete(self, advogado: Advogado):
         with BDConnectionHandler() as db:

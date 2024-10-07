@@ -21,6 +21,8 @@ class ProcessoController:
             data_insert = Processo(numero=numero, valor=valor, vara=vara, classe=classe, link=link, profissao=profissao)
             db.session.add(data_insert)
             db.session.commit()
+
+            return db.session.query(Processo).filter(Processo.numero==numero).first()
     
     def delete(self, processo: Processo):
         with BDConnectionHandler() as db:

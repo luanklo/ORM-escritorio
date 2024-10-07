@@ -16,7 +16,7 @@ class Parte(base):
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False)
     pessoa_id = Column(Integer, ForeignKey("pessoa.id"), nullable=False)
 
-    audiencias = relationship("Audiencia", secondary="audiencia_parte", back_populates="partes")
+    #audiencias = relationship("Audiencia", secondary="audiencia_parte", back_populates="partes")
     advogados = relationship("Advogado", secondary="advogado_parte", back_populates="partes")
 
     def addAdvogado(self, advogado: Advogado):

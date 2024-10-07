@@ -18,6 +18,8 @@ class PessoaController:
             data_insert = Pessoa(nome=nome, cpf_cnpj=cpf_cnpj, numero=numero)
             db.session.add(data_insert)
             db.session.commit()
+
+            return db.session.query(Pessoa).filter(Pessoa.cpf_cnpj==cpf_cnpj).first()
     
     def delete(self, pessoa: Pessoa):
         with BDConnectionHandler() as db:
