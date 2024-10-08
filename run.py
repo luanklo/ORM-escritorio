@@ -14,5 +14,5 @@ parte_controller = ParteController()
 
 
 # 2. Criando o Processo
-parte = parte_controller.select(id=9)[0]
+parte = parte_controller.select()
 print(parte.advogados)
