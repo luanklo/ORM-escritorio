@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 from infra.Configs.connection import BDConnectionHandler
 from infra.Models.AudienciaParte import AudienciaParte
-from infra.Models.Parte import Parte
+from infra.Models.LuanParte import LuanParte
 
 class Audiencia(base):
     __tablename__ = "audiencia"
@@ -19,13 +19,16 @@ class Audiencia(base):
     senha =       Column(String, nullable=True)
     processo_id = Column(Integer, ForeignKey("processo.id"), nullable=False)
 
-    partes = relationship("Parte", secondary="audiencia_parte", back_populates="audiencias")
+    #artes = relationship("Parte", secondary="audiencia_parte", back_populates="audiencias")
 
-    def addParte(self, parte: Parte):
+    def addParte(self):
         with BDConnectionHandler() as db:
-            nova_parte = AudienciaParte(audiencia_id=self.id, parte_id=parte.id)
-            db.session.add(nova_parte)
-            db.session.commit()
+            ids = db.session.query(LuanParte).filter(LuanParte.processo_id == self.processo_id).all()
+
+            for id in ids:
+                nova_audienciaparte = AudienciaParte(audiencia_id=self.id, parte_id = id.parte_id, etapa = "FAZER")
+                db.session.add(nova_audienciaparte)
+                db.session.commit()
 
     def __repr__(self):
         return f"Audiencia [id={self.id}, hora={self.hora}, dia={self.dia},\

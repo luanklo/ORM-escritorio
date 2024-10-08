@@ -2,7 +2,7 @@ from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Audiencia import Audiencia
 
 class AudienciaController:
-    def select(self, id=None, processo_id=None, dia=None):
+    def select(self, id=None, hora=None, dia=None, tipo=None, status=None, link=None, senha=None, processo_id=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Audiencia)
             
@@ -17,7 +17,7 @@ class AudienciaController:
             
             return query.all()
     
-    def insert(self, hora, dia, tipo, status="designada", link=None, senha=None, processo_id=None):
+    def insert(self, hora, dia, tipo, status="DESIGNADA", link=None, senha=None, processo_id=None):
         with BDConnectionHandler() as db:
             nova_audiencia = Audiencia(
                 hora=hora,
@@ -30,6 +30,11 @@ class AudienciaController:
             )
             db.session.add(nova_audiencia)
             db.session.commit()
+
+            return db.session.query(Audiencia)\
+                .filter(Audiencia.hora == hora)\
+                .filter(Audiencia.dia == dia)\
+                .filter(Audiencia.processo_id == processo_id)
     
     def delete(self, audiencia: Audiencia):
         with BDConnectionHandler() as db:
