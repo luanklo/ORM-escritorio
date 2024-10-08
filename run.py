@@ -1,8 +1,10 @@
 from infra.Controllers.ProcessoController import ProcessoController
 from infra.Controllers.MotivoController import MotivoController
+from infra.Controllers.ParteController import ParteController
 
 processo_controller = ProcessoController()
 motivo_controller = MotivoController()
+parte_controller = ParteController()
 
 # 1. Definindo os Motivos (se ainda não existem no banco)
 # motivo1 = motivo_controller.insert(nome="Motivo 1")
@@ -12,6 +14,5 @@ motivo_controller = MotivoController()
 
 
 # 2. Criando o Processo
-processo = processo_controller.select(numero="0016047-10.2024.5.16.0011")
-print(processo)
-
+parte = parte_controller.select(id=9)[0]
+print(parte.advogados)
