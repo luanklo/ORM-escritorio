@@ -2,7 +2,8 @@ from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Parte import Parte
 
 class ParteController:
-    def select(self, id=None, tipo=None, polo=None, processo_id=None, pessoa_id=None):
+
+    def select(self, id=None, processo_id=None, tipo=None, polo=None, pessoa_id=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Parte)
             

@@ -24,3 +24,6 @@ class Parte(base):
             novo_advogado = AdvogadoParte(parte_id=self.id, advogado_id=advogado.id)
             db.session.add(novo_advogado)
             db.session.commit()
+    
+    def __repr__(self):
+        return f"Parte [id={self.id}, tipo={self.tipo}, polo={self.polo}, processo_id={self.processo_id}, pessoa_id={self.pessoa_id}]"
