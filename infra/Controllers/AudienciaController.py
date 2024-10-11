@@ -34,7 +34,7 @@ class AudienciaController:
             return db.session.query(Audiencia)\
                 .filter(Audiencia.hora == hora)\
                 .filter(Audiencia.dia == dia)\
-                .filter(Audiencia.processo_id == processo_id)
+                .filter(Audiencia.processo_id == processo_id).one()
     
     def delete(self, audiencia: Audiencia):
         with BDConnectionHandler() as db:
