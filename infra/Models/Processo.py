@@ -17,6 +17,7 @@ class Processo(base):
     vara = Column(String, nullable=False)
     classe = Column(String, nullable=False)
     link = Column(String, nullable=False)
+    trt = Column(String, nullable=False)
     profissao = Column(String, nullable=True)
 
     motivos = relationship("Motivo", secondary="processo_motivo", back_populates="processos")

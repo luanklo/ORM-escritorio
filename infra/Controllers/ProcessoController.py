@@ -2,7 +2,7 @@ from infra.Configs.connection import BDConnectionHandler
 from infra.Models.Processo import Processo
 
 class ProcessoController:
-    def select(self, id=None, numero=None, valor=None, vara=None, classe=None, link=None, profissao=None):
+    def select(self, id=None, numero=None, valor=None, vara=None, classe=None, link=None, trt=None, profissao=None):
         with BDConnectionHandler() as db:
             query = db.session.query(Processo)
             
@@ -12,13 +12,14 @@ class ProcessoController:
             if vara:      query = query.filter(Processo.vara==vara)
             if classe:    query = query.filter(Processo.classe==classe)
             if link:      query = query.filter(Processo.link==link)
+            if trt:      query = query.filter(Processo.trt==trt)
             if profissao: query = query.filter(Processo.profissao==profissao)
             
             return query.all()
 
-    def insert(self, numero, valor, vara, classe, link, profissao=None):
+    def insert(self, numero, valor, vara, classe, link, trt, profissao=None):
         with BDConnectionHandler() as db:
-            data_insert = Processo(numero=numero, valor=valor, vara=vara, classe=classe, link=link, profissao=profissao)
+            data_insert = Processo(numero=numero, valor=valor, vara=vara, classe=classe, link=link, trt=trt, profissao=profissao)
             db.session.add(data_insert)
             db.session.commit()
 
