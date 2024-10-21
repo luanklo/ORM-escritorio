@@ -8,12 +8,14 @@ class AudienciaController:
             
             if id:          query = query.filter(Audiencia.id == id)
             if hora:        query = query.filter(Audiencia.hora == hora)
-            if dia:         query = query.filter(Audiencia.dia == dia)
+            if dia:         query = query.filter(Audiencia.dia >= dia)
             if tipo:        query = query.filter(Audiencia.tipo == tipo)
             if status:      query = query.filter(Audiencia.status == status)
             if link:        query = query.filter(Audiencia.link == link)
             if senha:       query = query.filter(Audiencia.senha == senha)
             if processo_id: query = query.filter(Audiencia.processo_id == processo_id)
+
+            query.order_by(Audiencia.dia, Audiencia.hora)
             
             return query.all()
     
