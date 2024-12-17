@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 class BDConnectionHandler:
     def __init__(self) -> None:
-        self.__connection_string = 'mysql+pymysql://root:config@localhost:3306/test_escritorio'
+        self.__connection_string = 'mysql+pymysql://root:config@localhost:3306/escritorio'
         self.__engine = self.__create_database_engine()
         self.session = None
 
